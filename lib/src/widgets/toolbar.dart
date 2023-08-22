@@ -66,6 +66,8 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     this.sectionDividerColor,
     this.sectionDividerSpace,
     this.linkDialogAction,
+    this.backArrow,
+    this.forwardArrow,
     Key? key,
   }) : super(key: key);
 
@@ -160,6 +162,10 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     /// Validate the legitimacy of hyperlinks
     RegExp? linkRegExp,
     LinkDialogAction? linkDialogAction,
+
+    /// single line toolbar scroll indicator arrow.
+    Widget? backArrow,
+    Widget? forwardArrow,
     Key? key,
   }) {
     final isButtonGroupShown = [
@@ -246,6 +252,8 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
 
     return QuillToolbar(
       key: key,
+      backArrow: backArrow,
+      forwardArrow: forwardArrow,
       axis: axis,
       color: color,
       toolbarSize: toolbarIconSize * 2,
@@ -628,6 +636,10 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
   /// The space occupied by toolbar section divider.
   final double? sectionDividerSpace;
 
+  /// single line toolbar scroll indicator arrow.
+  final Widget? backArrow;
+  final Widget? forwardArrow;
+
   @override
   Size get preferredSize => axis == Axis.horizontal
       ? Size.fromHeight(toolbarSize)
@@ -653,6 +665,8 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
               ),
               color: color ?? Theme.of(context).canvasColor,
               child: ArrowIndicatedButtonList(
+                backArrow: backArrow,
+                forwardArrow: forwardArrow,
                 axis: axis,
                 buttons: children,
               ),

@@ -10,11 +10,15 @@ class ArrowIndicatedButtonList extends StatefulWidget {
   const ArrowIndicatedButtonList({
     required this.axis,
     required this.buttons,
+    this.backArrow,
+    this.forwardArrow,
     Key? key,
   }) : super(key: key);
 
   final Axis axis;
   final List<Widget> buttons;
+  final Widget? backArrow;
+  final Widget? forwardArrow;
 
   @override
   _ArrowIndicatedButtonListState createState() =>
@@ -75,14 +79,19 @@ class _ArrowIndicatedButtonListState extends State<ArrowIndicatedButtonList>
     setState(() {
       _showBackwardArrow =
           _controller.position.minScrollExtent != _controller.position.pixels;
-      _showForwardArrow =
-          _controller.position.maxScrollExtent != _controller.position.pixels;
+      _showForwardArrow = _controller.position.maxScrollExtent - 10 >=
+          _controller.position.pixels;
     });
   }
 
   Widget _buildBackwardArrow() {
     IconData? icon;
     if (_showBackwardArrow) {
+      final backArrow = widget.backArrow;
+      if (backArrow != null) {
+        return backArrow;
+      }
+
       if (widget.axis == Axis.horizontal) {
         icon = Icons.arrow_left;
       } else {
@@ -134,6 +143,11 @@ class _ArrowIndicatedButtonListState extends State<ArrowIndicatedButtonList>
   Widget _buildForwardArrow() {
     IconData? icon;
     if (_showForwardArrow) {
+      final forwardArrow = widget.forwardArrow;
+      if (forwardArrow != null) {
+        return forwardArrow;
+      }
+
       if (widget.axis == Axis.horizontal) {
         icon = Icons.arrow_right;
       } else {
