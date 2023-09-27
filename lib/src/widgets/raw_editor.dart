@@ -455,7 +455,7 @@ class RawEditorState extends EditorState
     if (_doc.isEmpty() && widget.placeholder != null) {
       final raw = widget.placeholder?.replaceAll(r'"', '\\"');
       _doc = Document.fromJson(jsonDecode(
-          '[{"attributes":{"placeholder":true},"insert":"$raw\\n"}, {"insert":"\\n", "attributes": {"align": "center"}}]'));
+          '[{"attributes":{"placeholder":true},"insert":"$raw\\n"}]'));
     }
 
     Widget child = CompositedTransformTarget(
