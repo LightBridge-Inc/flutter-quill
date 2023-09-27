@@ -12,6 +12,7 @@ class ArrowIndicatedButtonList extends StatefulWidget {
     required this.buttons,
     this.backArrow,
     this.forwardArrow,
+    this.toolbarScrollController,
     Key? key,
   }) : super(key: key);
 
@@ -19,6 +20,7 @@ class ArrowIndicatedButtonList extends StatefulWidget {
   final List<Widget> buttons;
   final Widget? backArrow;
   final Widget? forwardArrow;
+  final ScrollController? toolbarScrollController;
 
   @override
   _ArrowIndicatedButtonListState createState() =>
@@ -27,13 +29,14 @@ class ArrowIndicatedButtonList extends StatefulWidget {
 
 class _ArrowIndicatedButtonListState extends State<ArrowIndicatedButtonList>
     with WidgetsBindingObserver {
-  final ScrollController _controller = ScrollController();
+  late final ScrollController _controller;
   bool _showBackwardArrow = false;
   bool _showForwardArrow = false;
 
   @override
   void initState() {
     super.initState();
+    _controller = widget.toolbarScrollController ?? ScrollController();
     _controller.addListener(_handleScroll);
 
     // Listening to the WidgetsBinding instance is necessary so that we can

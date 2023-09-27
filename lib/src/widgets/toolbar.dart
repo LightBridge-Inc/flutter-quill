@@ -68,6 +68,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     this.linkDialogAction,
     this.backArrow,
     this.forwardArrow,
+    this.toolbarScrollController,
     Key? key,
   }) : super(key: key);
 
@@ -166,6 +167,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     /// single line toolbar scroll indicator arrow.
     Widget? backArrow,
     Widget? forwardArrow,
+    ScrollController? toolbarScrollController,
     Key? key,
   }) {
     final isButtonGroupShown = [
@@ -254,6 +256,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
       key: key,
       backArrow: backArrow,
       forwardArrow: forwardArrow,
+      toolbarScrollController: toolbarScrollController,
       axis: axis,
       color: color,
       toolbarSize: toolbarIconSize * 2,
@@ -639,6 +642,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
   /// single line toolbar scroll indicator arrow.
   final Widget? backArrow;
   final Widget? forwardArrow;
+  final ScrollController? toolbarScrollController;
 
   @override
   Size get preferredSize => axis == Axis.horizontal
@@ -667,6 +671,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
               child: ArrowIndicatedButtonList(
                 backArrow: backArrow,
                 forwardArrow: forwardArrow,
+                toolbarScrollController: toolbarScrollController,
                 axis: axis,
                 buttons: children,
               ),
