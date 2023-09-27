@@ -71,7 +71,9 @@ class _ArrowIndicatedButtonListState extends State<ArrowIndicatedButtonList>
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.toolbarScrollController == null) {
+      _controller.dispose();
+    }
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
