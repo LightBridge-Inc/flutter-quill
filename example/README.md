@@ -1,16 +1,10 @@
-# app
+# Flutter Quill Example
 
-demo app
+Demonstrates how to use the [flutter_quill](https://pub.dev/packages/flutter_quill) package.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="./assets/images/screenshot_1.png" width="150" alt="Screenshot 1" alt="iOS Light Mode">
+<img src="./assets/images/screenshot_2.png" width="300" alt="Screenshot 2" alt="macOS Dark Mode">
+<img src="./assets/images/screenshot_3.png" width="150" alt="Screenshot 3" alt="Android Dark Mode Search Dialog">
+<img src="./assets/images/screenshot_4.png" width="250" alt="Screenshot 4" alt="Web Select Color Dialog">

@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used to demonstrate flutter_quill package</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to demonstrate flutter_quill package</string>
 </dict>
 </plist>
