@@ -1,36 +1,42 @@
-## 0.4.1
-- Updated dependencies to support image_picker 1.0
+# Changelog
 
-## 0.4.0
-- Fix backspace around images [PR #1309](https://github.com/singerdmx/flutter-quill/pull/1309)
-- Feat/link regexp [PR #1329](https://github.com/singerdmx/flutter-quill/pull/1329)
+All notable changes to this project will be documented in this file.
 
-## 0.3.4
-* Resolve deprecated method use in the `video_player` package
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.3.3
-* Fix a prototype bug which was bring by [PR #1230](https://github.com/singerdmx/flutter-quill/pull/1230#issuecomment-1560597099)
+> [!NOTE]
+> The [previous `CHANGELOG.md`](https://github.com/singerdmx/flutter-quill/blob/master/doc/OLD_CHANGELOG.md) has been archived.
 
-## 0.3.2
-* Updated dependencies to support intl 0.18
+## [Unreleased]
 
-## 0.3.1
-* Image embedding tweaks
-  * Add MediaButton which is intened to superseed the ImageButton and VideoButton. Only image selection is working.
-  * Implement image insert for web (image as base64)
+> [!IMPORTANT]
+> See the [migration guide from 10.0.0 to 11.0.0](https://github.com/singerdmx/flutter-quill/blob/master/doc/migration/10_to_11.md) for the full breaking changes and migration. Ensure to read the [breaking behavior](https://github.com/singerdmx/flutter-quill/blob/master/doc/migration/10_to_11.md#-breaking-behavior) section to avoid unexpected changes.
 
-## 0.3.0
+### Changed
 
-* Added support for adding custom tooltips to toolbar buttons
+- Update the minimum supported SDK version to **Flutter 3.0/Dart 3.0** for compatibility, fixing [#2347](https://github.com/singerdmx/flutter-quill/issues/2347).
+- Improve dependencies constraints for compatibility.
+- **BREAKING**: Update configuration class names to use the suffix `Config` instead of `Configurations`.
+- The `QuillSimpleToolbar` base button options now support buttons of `flutter_quill_extensions`.
 
-## 0.2.0
+### Removed
 
-* Allow widgets to override widget span properties [b7951b0](https://github.com/singerdmx/flutter-quill/commit/b7951b02c9086ea42e7aad6d78e6c9b0297562e5)
-* Remove tuples [3e9452e](https://github.com/singerdmx/flutter-quill/commit/3e9452e675e8734ff50364c5f7b5d34088d5ff05)
-* Remove transparent color of ImageVideoUtils dialog [74544bd](https://github.com/singerdmx/flutter-quill/commit/74544bd945a9d212ca1e8d6b3053dbecee22b720)
-* Migrate to `youtube_player_flutter` from `youtube_player_flutter_quill`
-* Updates to forumla button [5228f38](https://github.com/singerdmx/flutter-quill/commit/5228f389ba6f37d61d445cfe138c19fcf8766d71)
+- **BREAKING**: The [`super_clipboard`](https://pub.dev/packages/super_clipboard) plugin from [flutter_quill_extensions](https://pub.dev/packages/flutter_quill_extensions).
+- **BREAKING**: The deprecated support for loading YouTube videos in `flutter_quill_extensions`.
 
-## 0.1.0
+### Added
 
-* Initial release
+- `Insert video` string in `quill_en.arb` to support localization. Currently available **only in English**.
+
+## [11.0.0-dev.3] - 2024-11-08
+
+### Changed
+
+- Updates minimum supported [`flutter_quill`](https://pub.dev/packages/flutter_quill) version to `11.0.0-dev.3`.
+
+## [11.0.0-dev.2] - 2024-11-08
+
+### Changed
+
+- Separate the package version and `CHANGELOG.md` from [flutter_quill](https://pub.dev/packages/flutter_quill).
