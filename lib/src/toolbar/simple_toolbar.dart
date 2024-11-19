@@ -14,6 +14,9 @@ class QuillSimpleToolbar extends StatelessWidget
   factory QuillSimpleToolbar({
     required QuillSimpleToolbarConfigurations? configurations,
     QuillController? controller,
+    Widget? backArrow,
+    Widget? forwardArrow,
+    ScrollController? toolbarScrollController,
     Key? key,
   }) {
     // ignore: deprecated_member_use_from_same_package
@@ -28,16 +31,31 @@ class QuillSimpleToolbar extends StatelessWidget
     //
     return QuillSimpleToolbar._(
       controller: controller,
+      backArrow: backArrow,
+      forwardArrow: forwardArrow,
+      toolbarScrollController: toolbarScrollController,
       key: key,
     );
   }
 
   const QuillSimpleToolbar._({
     required this.controller,
+    this.backArrow,
+    this.forwardArrow,
+    this.toolbarScrollController,
     super.key,
   });
 
   final QuillController controller;
+
+  /// single line toolbar scroll indicator arrow.
+  final Widget? backArrow;
+
+  /// single line toolbar scroll indicator arrow.
+  final Widget? forwardArrow;
+
+  /// The scroll controller for the toolbar widget of flutter quill.
+  final ScrollController? toolbarScrollController;
 
   /// The configurations for the toolbar widget of flutter quill
   QuillSimpleToolbarConfigurations get configurations =>
@@ -349,6 +367,9 @@ class QuillSimpleToolbar extends StatelessWidget
               child: QuillToolbarArrowIndicatedButtonList(
                 axis: configurations.axis,
                 buttons: childrenBuilder(context),
+                backArrow: backArrow,
+                forwardArrow: forwardArrow,
+                toolbarScrollController: toolbarScrollController,
               ),
             );
           },
