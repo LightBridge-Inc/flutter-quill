@@ -82,7 +82,7 @@ class QuillToolbarArrowIndicatedButtonListState
     setState(() {
       _showBackwardArrow =
           _controller.position.minScrollExtent != _controller.position.pixels;
-      _showForwardArrow = _controller.position.maxScrollExtent - 10 >=
+      _showForwardArrow = _controller.position.maxScrollExtent - 5 >=
           _controller.position.pixels;
     });
   }
@@ -120,24 +120,30 @@ class QuillToolbarArrowIndicatedButtonListState
         // The CustomScrollView is necessary so that the children are not
         // stretched to the height of the toolbar:
         // https://stackoverflow.com/a/65998731/7091839
-        child: CustomScrollView(
-          scrollDirection: widget.axis,
+        child: RawScrollbar(
           controller: _controller,
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: widget.axis == Axis.horizontal
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.buttons,
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.buttons,
-                    ),
-            )
-          ],
+          thumbVisibility: true,
+          thickness: 4,
+          thumbColor: Colors.grey,
+          child: CustomScrollView(
+            scrollDirection: widget.axis,
+            controller: _controller,
+            physics: const ClampingScrollPhysics(),
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: widget.axis == Axis.horizontal
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: widget.buttons,
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: widget.buttons,
+                      ),
+              )
+            ],
+          ),
         ),
       ),
     );
