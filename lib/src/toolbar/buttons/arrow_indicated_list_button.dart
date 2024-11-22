@@ -10,12 +10,17 @@ class QuillToolbarArrowIndicatedButtonList extends StatefulWidget {
   const QuillToolbarArrowIndicatedButtonList({
     required this.axis,
     required this.buttons,
+    this.backArrow,
+    this.forwardArrow,
+    this.toolbarScrollController,
     super.key,
   });
 
   final Axis axis;
   final List<Widget> buttons;
-
+  final Widget? backArrow;
+  final Widget? forwardArrow;
+  final ScrollController? toolbarScrollController;
   @override
   QuillToolbarArrowIndicatedButtonListState createState() =>
       QuillToolbarArrowIndicatedButtonListState();
@@ -24,13 +29,14 @@ class QuillToolbarArrowIndicatedButtonList extends StatefulWidget {
 class QuillToolbarArrowIndicatedButtonListState
     extends State<QuillToolbarArrowIndicatedButtonList>
     with WidgetsBindingObserver {
-  final ScrollController _controller = ScrollController();
+  late final ScrollController _controller;
   bool _showBackwardArrow = false;
   bool _showForwardArrow = false;
 
   @override
   void initState() {
     super.initState();
+    _controller = widget.toolbarScrollController ?? ScrollController();
     _controller.addListener(_handleScroll);
 
     // Listening to the WidgetsBinding instance is necessary so that we can
@@ -76,14 +82,19 @@ class QuillToolbarArrowIndicatedButtonListState
     setState(() {
       _showBackwardArrow =
           _controller.position.minScrollExtent != _controller.position.pixels;
-      _showForwardArrow =
-          _controller.position.maxScrollExtent != _controller.position.pixels;
+      _showForwardArrow = _controller.position.maxScrollExtent - 5 >=
+          _controller.position.pixels;
     });
   }
 
   Widget _buildBackwardArrow() {
     IconData? icon;
     if (_showBackwardArrow) {
+      final backArrow = widget.backArrow;
+      if (backArrow != null) {
+        return backArrow;
+      }
+
       if (widget.axis == Axis.horizontal) {
         icon = Icons.arrow_left;
       } else {
@@ -109,24 +120,30 @@ class QuillToolbarArrowIndicatedButtonListState
         // The CustomScrollView is necessary so that the children are not
         // stretched to the height of the toolbar:
         // https://stackoverflow.com/a/65998731/7091839
-        child: CustomScrollView(
-          scrollDirection: widget.axis,
+        child: RawScrollbar(
           controller: _controller,
-          physics: const ClampingScrollPhysics(),
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: widget.axis == Axis.horizontal
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.buttons,
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.buttons,
-                    ),
-            )
-          ],
+          thumbVisibility: true,
+          thickness: 4,
+          thumbColor: Colors.grey,
+          child: CustomScrollView(
+            scrollDirection: widget.axis,
+            controller: _controller,
+            physics: const ClampingScrollPhysics(),
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: widget.axis == Axis.horizontal
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: widget.buttons,
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: widget.buttons,
+                      ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -135,6 +152,11 @@ class QuillToolbarArrowIndicatedButtonListState
   Widget _buildForwardArrow() {
     IconData? icon;
     if (_showForwardArrow) {
+      final forwardArrow = widget.forwardArrow;
+      if (forwardArrow != null) {
+        return forwardArrow;
+      }
+
       if (widget.axis == Axis.horizontal) {
         icon = Icons.arrow_right;
       } else {
